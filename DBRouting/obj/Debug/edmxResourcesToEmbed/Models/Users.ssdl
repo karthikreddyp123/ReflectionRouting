@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBRouteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Master_Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles_Controller">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="ControllerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RouteTable">
+    <Key>
+      <PropertyRef Name="RouteID" />
+    </Key>
+    <Property Name="RouteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Route" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User_Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Roles_Controller_Master_Roles">
+    <End Role="Master_Roles" Type="Self.Master_Roles" Multiplicity="1" />
+    <End Role="Roles_Controller" Type="Self.Roles_Controller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Master_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Roles_Controller">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Controller_RouteTable">
+    <End Role="RouteTable" Type="Self.RouteTable" Multiplicity="1" />
+    <End Role="Roles_Controller" Type="Self.Roles_Controller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RouteTable">
+        <PropertyRef Name="RouteID" />
+      </Principal>
+      <Dependent Role="Roles_Controller">
+        <PropertyRef Name="ControllerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Roles_Master_Roles">
+    <End Role="Master_Roles" Type="Self.Master_Roles" Multiplicity="1" />
+    <End Role="User_Roles" Type="Self.User_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Master_Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User_Roles">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Roles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="User_Roles" Type="Self.User_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Roles">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBRouteModelStoreContainer">
+    <EntitySet Name="Master_Roles" EntityType="Self.Master_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles_Controller" EntityType="Self.Roles_Controller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RouteTable" EntityType="Self.RouteTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Roles" EntityType="Self.User_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Roles_Controller_Master_Roles" Association="Self.FK_Roles_Controller_Master_Roles">
+      <End Role="Master_Roles" EntitySet="Master_Roles" />
+      <End Role="Roles_Controller" EntitySet="Roles_Controller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Controller_RouteTable" Association="Self.FK_Roles_Controller_RouteTable">
+      <End Role="RouteTable" EntitySet="RouteTable" />
+      <End Role="Roles_Controller" EntitySet="Roles_Controller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Roles_Master_Roles" Association="Self.FK_User_Roles_Master_Roles">
+      <End Role="Master_Roles" EntitySet="Master_Roles" />
+      <End Role="User_Roles" EntitySet="User_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Roles_Users" Association="Self.FK_User_Roles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Roles" EntitySet="User_Roles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
