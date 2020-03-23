@@ -21,6 +21,7 @@ namespace DBRouting.RouteTableInfo
                 .SelectMany(type => type.GetMethods())
                 .Where(method => method.IsPublic && !method.IsDefined(typeof(NonActionAttribute)) && method.ReturnType == typeof(ActionResult)).ToList();
             temp.Count();
+            hg
             foreach (var item in temp)
             {
                 StringBuilder url = new StringBuilder("/" + item.DeclaringType.Name.Substring(0,item.DeclaringType.Name.Length-10) + "/" + item.Name);

@@ -79,3 +79,6 @@ D:\Karthik\repos\DBRouting\DBRouting\bin\Microsoft.CodeDom.Providers.DotNetCompi
 D:\Karthik\repos\DBRouting\DBRouting\obj\Debug\DBRouting.csproj.CopyComplete
 D:\Karthik\repos\DBRouting\DBRouting\obj\Debug\DBRouting.dll
 D:\Karthik\repos\DBRouting\DBRouting\obj\Debug\DBRouting.pdb
+D:\Karthik\Git\ReflectionRouting\DBRouting\obj\Debug\DBRouting.csprojAssemblyReference.cache
+D:\Karthik\Git\ReflectionRouting\DBRouting\obj\Debug\DBRouting.dll
+D:\Karthik\Git\ReflectionRouting\DBRouting\obj\Debug\DBRouting.pdb
