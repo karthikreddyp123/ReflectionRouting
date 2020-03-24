@@ -1,0 +1,60 @@
+﻿body {
+}
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.w3-container {
+    margin-top: 50px;
+}
+
+header {
+    text-align: center;
+}
+
+.w3-card {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 30px 50px 30px;
+    width: 65%;
+    margin: 0 auto;
+}
+
+.blue {
+    background-color: rgb(118, 205, 216);
+}
+
+input {
+    padding-right: 1px;
+}
+.time {
+    padding-left: 1px;
+    padding-right: 10px;
+}
+#time {
+    min-width: 50px;
+}
+#time.form-control {
+    padding: 0;
+}
+
+header {
+    font-family: 'blanch';
+    font-style: normal;
+    font-weight: 300;
+}
+
+#addEvent_User:hover {
+    color: #76CDD8;
+}
+
+#addEvent_User {
+    color: black;
+}

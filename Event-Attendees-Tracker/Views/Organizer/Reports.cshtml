@@ -1,0 +1,83 @@
+﻿@model Event_Attendees_Tracker_CustomResponseModel.PastEventResponseModel
+
+@{
+    ViewBag.Title = "Organizer";
+    Layout = "~/Views/Organizer/_OrganizerNav.cshtml";
+
+}
+@{
+    var data = ViewData["eventData"];
+}
+<html>
+@if (ViewData["NoPastEvents"] != null)
+{
+    <body>
+        <h1 style="align-content:center">  @ViewData["NoPastEvents"] </h1>
+    </body>
+
+}
+@if (data != null)
+{
+
+    <head>
+        <meta name="viewport" content="width =device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="custom.css">
+        <link href="~/Content/css/Reports.css" rel="stylesheet" />
+    </head>
+
+    <body onload="styleCode() ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="box">
+                        <div class="sidebar-sticky">
+                            <div></div>
+                            <div></div>
+                            <form role="search" class="bd-search d-flex align-items-center">
+                                <span class="algolia-autocomplete algolia-autocomplete-left" style="position: relative; display: inline-block; direction: ltr;"><span class="ds-dropdown-menu ds-with-1" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; left: 0px; right: auto; display: none;"><div class="ds-dataset-1"></div></span></span>
+                            </form>
+                            <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" target="navbarSupportedContent">
+                                <span><b>Past Events</b></span>
+                            </h5>
+                            <div id="EventsList">
+                                @if (ViewData["eventData"] != null)
+                                {
+                                    <ul id="myUL" class="nav nav-link flex-column list-group-flush" style="overflow-y: auto;">
+                                        @foreach (var eventModel in (Event_Attendees_Tracker_CustomResponseModel.PastEventResponseModel[])data)
+                                        {
+                                            <li class="list-group-item" id="list-group-itemID" onclick="showInChart(@eventModel.numberOfStudentsRegistered,@eventModel.numberOfStudentsPresent,this)"> @eventModel.eventName</li>
+                                        }
+
+                                    </ul>
+                                }
+                            </div>
+                            <i class="fa fa-arrow-right icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9" name="framename" id="content-page">
+                    <div id="piechart_3d" class="chart"></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="~/Content/Js/Reports.js"></script>
+    </body>
+}
+
+@if (ViewData["errorReports"] != null)
+{
+    <body>
+        <h1 style="align-content:center;color:red">  @ViewData["errorReports"] </h1>
+    </body>
+}
+</html>
+

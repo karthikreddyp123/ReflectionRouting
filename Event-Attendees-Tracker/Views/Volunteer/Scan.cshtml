@@ -1,0 +1,27 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>jsQR Demo</title>
+    <script src="~/Content/Js/jsQR.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ropa+Sans" rel="stylesheet">
+    <link href="~/Content/css/Volunteer_Scan.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 id="eventName"></h1>
+    <h5 id="eventVenue"></h5>
+    <h3 id="studentCount">Number of students scanned : 0</h3>
+    <div id="hasActiveEventMessage">      </div>
+    <div hidden id="hasActiveEvent" style="text-align:center;">
+        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <canvas id="canvas" hidden></canvas>
+        <div hidden id="output">
+            <div id="outputMessage">No QR code detected.</div>
+            <div hidden><b>QR String:</b> <span id="outputData"></span></div>
+        </div>
+        <br />
+        <button type="button" class="btn btn-danger">Stop Scan</button>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Content/Js/Volunteer_Scan.js"></script>
+</body>
+</html>
